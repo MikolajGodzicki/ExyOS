@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ExyOS.Commands {
     /// <summary>
-    /// Command that clears console display
+    /// Displays current user ID and name
     /// </summary>
-    internal class Clear : ICommand {
+    internal class _WhoAmI : ICommand {
         public void Execute() {
-
+            Console.WriteLine(ExyOs.Instance.user.ToString());
         }
     }
 }

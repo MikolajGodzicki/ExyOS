@@ -19,5 +19,9 @@ namespace ExyOS.UserDefinitions {
             Name = name;
             Password = password;
         }
+
+        public override string ToString() {
+            return $"ID:{ID.Id} NAME:{Name}";
+        }
     }
 }

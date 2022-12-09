@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExyOS.UserDefinitions {
     /// <summary>
-    /// Defines unique identifer number.
+    /// Defines unique identifer number for every entity
     /// </summary>
     internal class Identifier {
         public static int _id { get; private set; } = 0;
