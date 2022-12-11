@@ -10,10 +10,18 @@ namespace ExyOS {
     internal class ExyOs {
         private static ExyOs? instance = null;
 
+        private Lexer lexer;
+        private Parser parser;
+
         public User user { get; private set; }
         private Authenticator authenticator;
 
+        private CommandContainer commandContainer;
+
         public ExyOs() {
+            lexer = new Lexer();
+            parser = new Parser();
+            commandContainer = new CommandContainer();
             authenticator = new Authenticator();
             user = authenticator.Authenticate();
         }
@@ -32,9 +40,9 @@ namespace ExyOS {
 
             while (true) {
                 DisplayConsole(user, path);
-                Console.ReadLine();
-                _WhoAmI s = new _WhoAmI();
-                s.Execute();
+                string? input = Console.ReadLine();
+                Command command = lexer.InterpretInputToCommand(input);
+                parser.Parse(command);
             }
 
         }

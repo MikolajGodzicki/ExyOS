@@ -13,6 +13,6 @@ namespace ExyOS.Commands
         /// <summary>
         /// Method to execute command
         /// </summary>
-        public void Execute();
+        public void Execute(params string[]? args);
     }
 }
