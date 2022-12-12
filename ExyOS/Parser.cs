@@ -13,7 +13,7 @@ namespace ExyOS {
         public void Parse(Command command) { 
             if (command.commandType != String.Empty) {
                 if (!CommandContainer.commands.ContainsKey(command.commandType)) {
-                    Log.Write($"[{command.commandType}]: There is no command of this type. \nwrite 'help' to get list of commands");
+                    Console.WriteLine($"[{command.commandType}]: There is no command of this type. \nwrite 'help' to get list of commands");
                     return;
                 }
 

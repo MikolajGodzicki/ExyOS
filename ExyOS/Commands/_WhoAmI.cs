@@ -15,7 +15,7 @@ namespace ExyOS.Commands {
 
             if (args != null) {
                 string type = args[0];
-                if (type == "all") {
+                if (type == "withgroups") {
                     Console.WriteLine(ExyOs.Instance.user.Groups.Count);
                 }
             }

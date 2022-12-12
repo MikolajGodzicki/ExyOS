@@ -16,6 +16,8 @@ namespace ExyOS.Commands {
         private void Initialize() {
             commands["whoami"] = new _WhoAmI();
             commands["clear"] = new _Clear();
+            commands["cd"] = new _Cd();
+            commands["ls"] = new _Ls();
             commands["help"] = new _Help();
         }
     }

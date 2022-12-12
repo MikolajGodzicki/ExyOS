@@ -2,7 +2,9 @@
 using ExyOS.UserDefinitions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +19,9 @@ namespace ExyOS {
         private Authenticator authenticator;
 
         private CommandContainer commandContainer;
+
+        public static string logicPath = "usr\\bin";
+        public static string osPath = "";
 
         public ExyOs() {
             lexer = new Lexer();
@@ -36,10 +41,9 @@ namespace ExyOS {
         }
 
         public void MainLoop() {
-            string path = "/usr/bin";
-
             while (true) {
-                DisplayConsole(user, path);
+                osPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\root\\{logicPath}";
+                DisplayConsole(user, logicPath);
                 string? input = Console.ReadLine();
                 Command command = lexer.InterpretInputToCommand(input);
                 parser.Parse(command);
