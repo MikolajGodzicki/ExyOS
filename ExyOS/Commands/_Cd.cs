@@ -16,6 +16,27 @@ namespace ExyOS.Commands {
 
             string pathToChange = args[0];
 
+            if (pathToChange == "..") {
+                string path = ExyOs.logicPath;
+                List<string> list = path.Split('\\').ToList();
+
+                list.RemoveAt(list.Count - 1);
+                ExyOs.logicPath = string.Join('\\', list);
+
+                return;
+            }
+
+            if (pathToChange == "/") {
+                ExyOs.logicPath = "";
+                return;
+            }
+
+            List<string> directories = ExyOs.Instance.GetDirectoriesNames();
+
+            if (directories.Contains(pathToChange)) {
+                ExyOs.logicPath += "\\" + pathToChange;
+                return;
+            }
         }
     }
 }

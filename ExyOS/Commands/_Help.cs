@@ -12,7 +12,7 @@ namespace ExyOS.Commands {
     internal class _Help : Command, ICommand {
         public void Execute(params string[]? args) {
             foreach (Command command in CommandContainer.commands.Values) {
-                DescriptionAttribute[] desc = command.GetType().GetCustomAttributes<DescriptionAttribute>().ToArray();
+                DescriptionAttribute[] desc = GetDescAttributes(command);
                 if (desc != null) {
                     foreach (DescriptionAttribute descAttribute in desc) {
                         Console.WriteLine($"{descAttribute.Name}: {descAttribute.Description}");
@@ -20,6 +20,10 @@ namespace ExyOS.Commands {
                 }
 
             }
+        }
+
+        private DescriptionAttribute[] GetDescAttributes(Command command) {
+            return command.GetType().GetCustomAttributes<DescriptionAttribute>().ToArray();
         }
     }
 }
