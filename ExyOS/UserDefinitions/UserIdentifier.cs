@@ -8,11 +8,12 @@ namespace ExyOS.UserDefinitions {
     /// <summary>
     /// Defines unique identifer number for every entity
     /// </summary>
-    internal class Identifier {
+    [Serializable]
+    internal class UserIdentifier {
         public static int _id { get; private set; } = 0;
         public int Id { get; }
 
-        public Identifier() {
+        public UserIdentifier() {
             Id = _id;
             _id++;
         }

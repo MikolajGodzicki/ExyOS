@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ExyOS.Commands {
-    [Description("cd", "Change directory to [arg]")]
+    [Description("cd", "Change to selected directory")]
     internal class _Cd : Command, ICommand {
         public void Execute(params string[]? args) {
             if (args == null || args.Length != 1) {

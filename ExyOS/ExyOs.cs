@@ -1,4 +1,5 @@
 ﻿using ExyOS.Commands;
+using ExyOS.DB;
 using ExyOS.FileManagement;
 using ExyOS.UserDefinitions;
 using System;
@@ -6,40 +7,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ExyOS {
     internal class ExyOs {
         private static ExyOs? instance = null;
-
-        private Lexer lexer;
-        private Parser parser;
-
-        private DefaultFiles defaultFiles;
-
-        public User user { get; private set; }
-        private Authenticator authenticator;
-
-        private CommandContainer commandContainer;
-
-        public static string logicPath = "usr\\bin";
-        public static string osPath = "";
-
-        private string version = "0.12_beta";
-
-        public ExyOs() {
-            lexer = new Lexer();
-            parser = new Parser();
-            defaultFiles = new DefaultFiles();
-            commandContainer = new CommandContainer();
-            authenticator = new Authenticator();
-            user = authenticator.Authenticate();
-
-            string path = GetCurrentDirectoryName();
-            defaultFiles.CreateFilesIfNotExist(path);
-        }
-
         public static ExyOs Instance {
             get {
                 if (instance == null) {
@@ -49,6 +23,38 @@ namespace ExyOS {
             }
         }
 
+        private Lexer lexer;
+        private Parser parser;
+
+        private DefaultFiles defaultFiles;
+        public Database database;
+
+        public User user { get; private set; }
+        private Authenticator authenticator;
+
+        private CommandContainer commandContainer;
+
+        public static string logicPath = "usr\\bin";
+        public static string osPath = "";
+
+        private string version = "0.13_beta";
+
+        public ExyOs() {
+            lexer = new Lexer();
+            parser = new Parser();
+            defaultFiles = new DefaultFiles();
+            commandContainer = new CommandContainer();
+            database = new Database();
+
+            authenticator = new Authenticator();
+            user = authenticator.Authenticate();
+
+            string path = GetCurrentDirectoryName();
+            defaultFiles.CreateFilesIfNotExist(path);
+        }
+
+        
+
         public void MainLoop() {
             DisplayLogo();
             while (true) {
@@ -57,12 +63,13 @@ namespace ExyOS {
                 string? input = Console.ReadLine();
                 Command command = lexer.InterpretInputToCommand(input);
                 parser.Parse(command);
+
             }
 
         }
 
         public List<string> GetFiles()
-                => Directory.EnumerateFiles(ExyOs.osPath)
+                => Directory.EnumerateFiles(osPath)
                 .ToList();
 
         public List<string> GetFilesNames() {
@@ -77,7 +84,7 @@ namespace ExyOS {
         }
 
         public List<string> GetDirectories()
-                => Directory.EnumerateDirectories(ExyOs.osPath)
+                => Directory.EnumerateDirectories(osPath)
                 .ToList();
 
         public List<string> GetDirectoriesNames() {
@@ -106,6 +113,10 @@ namespace ExyOS {
             }
 
             return path;
+        }
+
+        public static string GetDBDirectory() {
+            return $"{GetCurrentDirectoryName()}\\root\\etc";
         }
 
         private void DisplayLogo() {
