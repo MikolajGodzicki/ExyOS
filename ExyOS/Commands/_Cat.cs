@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExyOS.Commands {
 
-    [Description("cat", "Display file content")]
+    [Description("cat [file-name]", "Display file content")]
     internal class _Cat : Command, ICommand {
         public void Execute(params string[]? args) {
             if (args != null && args.Length == 1) {

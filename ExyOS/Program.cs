@@ -1,6 +1,7 @@
 ﻿using ExyOS.Commands;
 using ExyOS.UserDefinitions;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace ExyOS {
     internal class Program {

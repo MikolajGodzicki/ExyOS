@@ -20,6 +20,8 @@ namespace ExyOS.Commands {
             commands["ls"] = new _Ls();
             commands["cat"] = new _Cat();
             commands["touch"] = new _Touch();
+            commands["exit"] = new _Exit();
+            commands["rm"] = new _Rm();
             commands["help"] = new _Help();
         }
     }

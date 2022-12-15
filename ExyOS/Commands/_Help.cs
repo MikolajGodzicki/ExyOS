@@ -11,6 +11,8 @@ namespace ExyOS.Commands {
     /// </summary>
     internal class _Help : Command, ICommand {
         public void Execute(params string[]? args) {
+            Console.WriteLine("[] -- needed arguments");
+            Console.WriteLine("() -- optional arguments\n");
             foreach (Command command in CommandContainer.commands.Values) {
                 DescriptionAttribute[] desc = GetDescAttributes(command);
                 if (desc != null) {

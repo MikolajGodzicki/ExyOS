@@ -10,7 +10,7 @@ namespace ExyOS.UserDefinitions {
     /// </summary>
     [Serializable]
     internal class UserIdentifier {
-        public static int _id { get; private set; } = 0;
+        public static int _id { get; private set; } 
         public int Id { get; }
 
         public UserIdentifier() {

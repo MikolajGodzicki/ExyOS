@@ -1,5 +1,4 @@
 ﻿using ExyOS.Commands;
-using ExyOS.DB;
 using ExyOS.FileManagement;
 using ExyOS.UserDefinitions;
 using System;
@@ -27,7 +26,6 @@ namespace ExyOS {
         private Parser parser;
 
         private DefaultFiles defaultFiles;
-        public Database database;
 
         public User user { get; private set; }
         private Authenticator authenticator;
@@ -44,7 +42,6 @@ namespace ExyOS {
             parser = new Parser();
             defaultFiles = new DefaultFiles();
             commandContainer = new CommandContainer();
-            database = new Database();
 
             authenticator = new Authenticator();
             user = authenticator.Authenticate();

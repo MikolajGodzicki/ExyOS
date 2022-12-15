@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ExyOS.Commands {
-    [Description("touch", "Create file with selected name")]
+    [Description("touch [file-name]", "Create file with selected name")]
     internal class _Touch : Command, ICommand {
         public void Execute(params string[]? args) {
             if (args != null && args.Length == 1) {
