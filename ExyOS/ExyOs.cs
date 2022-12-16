@@ -32,10 +32,19 @@ namespace ExyOS {
 
         private CommandContainer commandContainer;
 
+        /// <summary>
+        /// Inside Program Path
+        /// </summary>
         public static string logicPath = "usr\\bin";
+
+        /// <summary>
+        /// Windows Program Path
+        /// </summary>
         public static string osPath = "";
 
         private string version = "0.13_beta";
+
+        public static bool IsTextEditorOpened;
 
         public ExyOs() {
             lexer = new Lexer();
@@ -55,12 +64,15 @@ namespace ExyOS {
         public void MainLoop() {
             DisplayLogo();
             while (true) {
+                if (IsTextEditorOpened) {
+                    continue;
+                }
+
                 osPath = $"{GetCurrentDirectoryName()}\\root\\{logicPath}";
                 DisplayConsole(user, logicPath);
                 string? input = Console.ReadLine();
                 Command command = lexer.InterpretInputToCommand(input);
                 parser.Parse(command);
-
             }
 
         }

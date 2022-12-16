@@ -19,6 +19,7 @@ namespace ExyOS.Commands {
                 }
 
                 string[] lines = File.ReadAllLines($"{ExyOs.osPath}\\{file_name}");
+
                 DisplayLine(lines);
                 return;
             }

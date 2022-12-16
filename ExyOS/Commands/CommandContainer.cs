@@ -22,6 +22,7 @@ namespace ExyOS.Commands {
             commands["touch"] = new _Touch();
             commands["exit"] = new _Exit();
             commands["rm"] = new _Rm();
+            commands["exyTE"] = new _ExyTE();
             commands["help"] = new _Help();
         }
     }

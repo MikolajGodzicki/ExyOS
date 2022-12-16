@@ -5,9 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ExyOS.TextEditor.Interface {
-    internal class InputHandler {
-        public ConsoleKey GetKey() {
-            return Console.ReadKey().Key;
-        }
+    internal interface IInterfaceElement {
+        public void Render();
     }
 }

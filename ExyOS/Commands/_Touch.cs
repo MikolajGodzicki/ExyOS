@@ -17,7 +17,7 @@ namespace ExyOS.Commands {
                     return;
                 }
 
-                File.Create($"{ExyOs.osPath}\\{file_name}");
+                File.Create($"{ExyOs.osPath}\\{file_name}").Dispose();
                 return;
             }
 
