@@ -6,22 +6,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExyOS.TextEditor.Interface
-{
-    internal class EditorInterface
-    {
+namespace ExyOS.TextEditor.Interface {
+    internal class EditorInterface {
         private Button[] buttons;
 
         public int SelectedButton = 0;
         private int memSelectedButton = 0;
 
+        enum EditorMode {
+            None,
+            Command,
+            Edit
+        }
+
+        private EditorMode mode = EditorMode.Command;
+
         public EditorInterface() {
             buttons = new Button[5] {
-                new Button("Save [t]", EmptyAction),
-                new Button("Open [y]", EmptyAction),
-                new Button("Copy [c]", EmptyAction),
-                new Button("Paste [v]", EmptyAction),
-                new Button("Exit [esc]", ButtonExit)
+                new Button("Save [F1]", EmptyAction),
+                new Button("Open [F2]", EmptyAction),
+                new Button("Copy [F3]", EmptyAction),
+                new Button("Paste [F4]", EmptyAction),
+                new Button("Exit [F5]", ButtonExit)
             };
 
 
@@ -31,31 +37,19 @@ namespace ExyOS.TextEditor.Interface
         private void RenderUI() {
             new _Clear().Execute(null);
 
-            foreach (var button in buttons) {
+            foreach (IInterfaceElement button in buttons) {
                 button.Render();
             }
 
-            Console.Write(" |\n");
-            foreach (var button in buttons) {
-                for (int i = 0; i < button.Text.Length + 4; i++) {
-                    Console.Write("_");
-                }
-            }
-
-            Console.Write("_/");
+            Console.Write($"\nUse [F9] to change mode | Current Mode: {mode}\n");
             
         }
 
         private void EmptyAction() { }
 
-        private void ButtonExit() {
-            ExyOs.IsTextEditorOpened = false;
-        }
+        private void ButtonExit() => ExyOs.IsTextEditorOpened = false;
 
-        public void ExecuteCurrentButton() { 
-            Debug.WriteLine(SelectedButton);
-            buttons[SelectedButton].Execute();
-        }
+        public void ExecuteCurrentButton() => buttons[SelectedButton].Execute();
 
         public void UpdateButton() {
             if (SelectedButton < 0 || SelectedButton > buttons.Length - 1) {
@@ -68,16 +62,8 @@ namespace ExyOS.TextEditor.Interface
             RenderUI();
         }
 
-        public void ChangeButton(int index) {
-            if (index == -1 & SelectedButton == 0) {
-                return;
-            }
+        public void ChangeButton(int index) => SelectedButton = index;
 
-            if (index == 1 & SelectedButton == buttons.Length - 1) {
-                return;
-            }
-
-            SelectedButton += index;
-        }
+        public void ChangeMode() => mode = mode == EditorMode.Command ? EditorMode.Edit : EditorMode.Command;
     }
 }

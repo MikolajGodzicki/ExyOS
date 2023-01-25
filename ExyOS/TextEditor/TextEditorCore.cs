@@ -20,6 +20,10 @@ namespace ExyOS.TextEditor {
             EditorInterface = new EditorInterface();
             InputHandler = new InputHandler();
 
+            Loop();
+        }
+
+        private void Loop() {
             while (true) {
                 if (!ExyOs.IsTextEditorOpened) {
                     new _Clear().Execute(null);
@@ -30,12 +34,24 @@ namespace ExyOS.TextEditor {
 
                 ConsoleKey key = InputHandler.GetKey();
                 switch (key) {
-                    case ConsoleKey.LeftArrow:
-                        EditorInterface.ChangeButton(-1);
+                    case ConsoleKey.F1:
+                        EditorInterface.ChangeButton(0);
+                        break;
+                    case ConsoleKey.F2:
+                        EditorInterface.ChangeButton(1);
+                        break;
+                    case ConsoleKey.F3:
+                        EditorInterface.ChangeButton(2);
+                        break;
+                    case ConsoleKey.F4:
+                        EditorInterface.ChangeButton(3);
+                        break;
+                    case ConsoleKey.F5:
+                        EditorInterface.ChangeButton(4);
                         break;
 
-                    case ConsoleKey.RightArrow:
-                        EditorInterface.ChangeButton(1);
+                    case ConsoleKey.F9:
+                        EditorInterface.ChangeMode();
                         break;
 
                     case ConsoleKey.Enter:

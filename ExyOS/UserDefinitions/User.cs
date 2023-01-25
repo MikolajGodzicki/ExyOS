@@ -11,19 +11,19 @@ namespace ExyOS.UserDefinitions
     /// </summary>
     [Serializable]
     internal class User {
-        public UserIdentifier ID { get; }
+        public uint ID { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
 
         public User(string name, string password) {
-            ID = new UserIdentifier();
-
             Name = name;
             Password = password;
         }
 
+        public User() { }
+
         public override string ToString() {
-            return $"ID:{ID.Id} USER_NAME:{Name}";
+            return $"ID:{ID} USER_NAME:{Name}";
         }
     }
 }

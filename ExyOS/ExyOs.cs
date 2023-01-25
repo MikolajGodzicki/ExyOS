@@ -27,8 +27,7 @@ namespace ExyOS {
 
         private DefaultFiles defaultFiles;
 
-        public User user { get; private set; }
-        private Authenticator authenticator;
+        public static User user { get; set; } 
 
         private CommandContainer commandContainer;
 
@@ -42,7 +41,7 @@ namespace ExyOS {
         /// </summary>
         public static string osPath = "";
 
-        private string version = "0.13_beta";
+        private string version = "0.14_beta";
 
         public static bool IsTextEditorOpened;
 
@@ -51,9 +50,6 @@ namespace ExyOS {
             parser = new Parser();
             defaultFiles = new DefaultFiles();
             commandContainer = new CommandContainer();
-
-            authenticator = new Authenticator();
-            user = authenticator.Authenticate();
 
             string path = GetCurrentDirectoryName();
             defaultFiles.CreateFilesIfNotExist(path);
@@ -69,7 +65,7 @@ namespace ExyOS {
                 }
 
                 osPath = $"{GetCurrentDirectoryName()}\\root\\{logicPath}";
-                DisplayConsole(user, logicPath);
+                DisplayConsole(logicPath);
                 string? input = Console.ReadLine();
                 Command command = lexer.InterpretInputToCommand(input);
                 parser.Parse(command);
@@ -107,10 +103,10 @@ namespace ExyOS {
             return names;
         }
 
-        private static void DisplayConsole(User user, string path) {
+        private static void DisplayConsole(string path) {
             Console.BackgroundColor = ConsoleColor.DarkCyan;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.Write($"{user.ID.Id}_{user.Name}#{path} >>");
+            Console.Write($"{user.ID}_{user.Name}#{path} >>");
             Console.ResetColor();
             Console.Write(" ");
         }

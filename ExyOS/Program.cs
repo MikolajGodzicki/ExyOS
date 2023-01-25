@@ -7,6 +7,10 @@ namespace ExyOS {
     internal class Program {
         static void Main(string[] args) {
             ExyOs exy = new ExyOs();
+            Authenticator auth = new Authenticator();
+
+            User user = auth.Authenticate();
+            ExyOs.user = user;
             exy.MainLoop();
         }
     }

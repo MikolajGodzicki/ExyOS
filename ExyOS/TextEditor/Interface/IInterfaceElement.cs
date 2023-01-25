@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExyOS.TextEditor.Interface {
     internal interface IInterfaceElement {
+        public string Text { get; set; }
         public void Render();
     }
 }
