@@ -14,7 +14,7 @@ namespace ExyOS.FileManagement {
             CreateDirectory($"{path}\\root\\etc");
 
             //files
-            CreateFile($"{path}\\root\\etc\\users.json");
+            CreateUsersFile($"{path}\\root\\etc\\users.json");
         }
 
         private void CreateDirectory(string path) {
@@ -26,6 +26,12 @@ namespace ExyOS.FileManagement {
         private void CreateFile(string path) {
             if (!File.Exists(path)) {
                 File.Create(path);
+            }
+        }
+
+        private void CreateUsersFile(string path) {
+            if (!File.Exists(path)) {
+                File.WriteAllText(path, "{\r\n    \"users\": [\r\n      {\r\n        \"id\": 0,\r\n        \"name\": \"root\",\r\n        \"password\": \"root\"\r\n      }\r\n    ]\r\n} \r\n  ");
             }
         }
     }
