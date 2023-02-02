@@ -41,7 +41,7 @@ namespace ExyOS {
         /// </summary>
         public static string osPath = "";
 
-        private string version = "0.14_beta";
+        private string version = "0.15_beta";
 
         public static bool IsTextEditorOpened;
 
@@ -104,7 +104,7 @@ namespace ExyOS {
         }
 
         private static void DisplayConsole(string path) {
-            Console.BackgroundColor = ConsoleColor.DarkCyan;
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.Write($"{user.ID}_{user.Name}#{path} >>");
             Console.ResetColor();

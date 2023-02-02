@@ -9,7 +9,8 @@ namespace ExyOS {
             ExyOs exy = new ExyOs();
             Authenticator auth = new Authenticator();
 
-            User user = auth.Authenticate();
+            //User user = auth.Authenticate();
+            User user = new User("root", "root");
             ExyOs.user = user;
             exy.MainLoop();
         }

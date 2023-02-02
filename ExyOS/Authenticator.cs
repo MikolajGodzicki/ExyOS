@@ -15,25 +15,50 @@ namespace ExyOS {
             User user;
 
             string? input;
-            string name, password;
+            string name = String.Empty, password = String.Empty;
             while (true) {
                 Console.Write("Login: ");
-                input = Console.ReadLine();
-                name = input != null ? input : "";
+                name = GetName();
                 Console.Write("Password: ");
-                input = Console.ReadLine();
-                password = input != null ? input : "";
-
+                password = GetPassword();
+                
                 user = new User(name, password);
-                ValidUser validUser = UserContainer.Instance.CheckIfUserIsValid(user);
-                if (validUser.isValid) {
-                    user.ID = validUser.ID;
+                CheckUser checkUser = UserContainer.Instance.CheckIfUserIsValid(user);
+                if (checkUser.isValid) {
+                    user.ID = checkUser.ID;
                     new _Clear().Execute(null);
                     break;
                 }
             }
 
             return user;
+        }
+
+        private string GetName() {
+            string input = Console.ReadLine();
+            return input != null ? input : "";
+        }
+
+        private string GetPassword() {
+            string password = String.Empty;
+            ConsoleKey key;
+
+            do {
+                var keyInfo = Console.ReadKey(intercept: true);
+                key = keyInfo.Key;
+
+                if (key == ConsoleKey.Backspace && password.Length > 0) {
+                    Console.Write("\b \b");
+                    password = password[0..^1];
+                }
+                else if (!char.IsControl(keyInfo.KeyChar)) {
+                    Console.Write("*");
+                    password += keyInfo.KeyChar;
+                }
+            } while (key != ConsoleKey.Enter);
+            Console.WriteLine();
+
+            return password;
         }
     }
 }

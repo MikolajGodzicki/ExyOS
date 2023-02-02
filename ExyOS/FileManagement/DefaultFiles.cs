@@ -15,7 +15,6 @@ namespace ExyOS.FileManagement {
 
             //files
             CreateFile($"{path}\\root\\etc\\users.json");
-            CreateFile($"{path}\\root\\etc\\groups.json");
         }
 
         private void CreateDirectory(string path) {

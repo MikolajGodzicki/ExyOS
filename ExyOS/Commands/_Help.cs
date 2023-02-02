@@ -17,7 +17,7 @@ namespace ExyOS.Commands {
                 DescriptionAttribute[] desc = GetDescAttributes(command);
                 if (desc != null) {
                     foreach (DescriptionAttribute descAttribute in desc) {
-                        Console.WriteLine($"{descAttribute.Name}: {descAttribute.Description}");
+                        Console.WriteLine($"{descAttribute.Name.PadRight(30)}: {descAttribute.Description}");
                     }
                 }
 

@@ -26,23 +26,23 @@ namespace ExyOS.UserDefinitions {
             users = users_ != null ? users_.Users : new List<User>();
         }
 
-        public ValidUser CheckIfUserIsValid(User user) {
+        public CheckUser CheckIfUserIsValid(User user) {
             foreach (User _user in users) {
                 if (_user.Name == user.Name &&
                     _user.Password == user.Password) {
-                    return new ValidUser(true, _user.ID);
+                    return new CheckUser(true, _user.ID);
                 }
             }
 
-            return new ValidUser(false, 0);
+            return new CheckUser(false, 0);
         }
     }
 
-    internal class ValidUser {
+    internal class CheckUser {
         public bool isValid;
         public uint ID;
 
-        public ValidUser(bool isValid, uint iD) {
+        public CheckUser(bool isValid, uint iD) {
             this.isValid = isValid;
             ID = iD;
         }
