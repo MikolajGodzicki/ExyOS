@@ -1,5 +1,6 @@
 ﻿using ExyOS.Commands;
 using ExyOS.UserDefinitions;
+using ExyOS.UserDefinitions.CheckAuthentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace ExyOS {
                 password = GetPassword();
                 
                 user = new User(name, password);
-                CheckUser checkUser = UserContainer.Instance.CheckIfUserIsValid(user);
+                CheckedUser checkUser = UserContainer.Instance.CheckIfUserIsValid(user);
                 if (checkUser.isValid) {
                     user.ID = checkUser.ID;
                     new _Clear().Execute(null);

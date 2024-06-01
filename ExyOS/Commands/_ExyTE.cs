@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ExyOS.Commands {
-    [Description("exyTE", "Starts embedded text editor" +
+    [Description("exyTE [file-name]", "Starts embedded text editor" +
         " | CTRL + S -> Save file" +
         " | CTRL + X -> Exit" +
         " | CTRL + Z -> Restore snapshot")]

@@ -31,7 +31,7 @@ namespace ExyOS.FileManagement {
 
         private void CreateUsersFile(string path) {
             if (!File.Exists(path)) {
-                File.WriteAllText(path, "{\r\n    \"users\": [\r\n      {\r\n        \"id\": 0,\r\n        \"name\": \"root\",\r\n        \"password\": \"root\"\r\n      }\r\n    ]\r\n} \r\n  ");
+                File.WriteAllText(path, "[\r\n  {\r\n    \"id\": 0,\r\n    \"name\": \"root\",\r\n    \"password\": \"root\"\r\n  }\r\n]");
             }
         }
     }

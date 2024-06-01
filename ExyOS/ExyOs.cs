@@ -59,6 +59,7 @@ namespace ExyOS {
 
         public void MainLoop() {
             DisplayLogo();
+
             while (true) {
                 if (IsTextEditorOpened) {
                     continue;
