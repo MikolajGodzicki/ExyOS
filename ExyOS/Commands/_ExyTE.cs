@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExyOS.Commands {
     [Description("exyTE [file-name]", "Starts embedded text editor" +
-        " | CTRL + S -> Save file" +
+        " | F5 -> Save file" +
         " | CTRL + X -> Exit" +
         " | CTRL + Z -> Restore snapshot")]
     internal class _ExyTE : Command, ICommand {

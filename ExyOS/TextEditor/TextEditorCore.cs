@@ -16,10 +16,18 @@ namespace ExyOS.TextEditor {
 
         public Editor(string filePath) {
             this.filePath = filePath;
-            var lines = File.ReadAllLines(this.filePath)
-                            .Where(x => x != Environment.NewLine);
 
-            _buffer = new Buffer(lines);
+            if (!File.Exists(this.filePath)) {
+                File.Create(this.filePath).Close();
+                _buffer = new Buffer([""]);
+            } else {
+                var lines = File.ReadAllLines(this.filePath)
+                                .Where(x => x != Environment.NewLine);
+
+                _buffer = new Buffer(lines);
+            }
+
+                
             _cursor = new Cursor();
             _history = new Stack<object>();
         }
@@ -55,8 +63,7 @@ namespace ExyOS.TextEditor {
                 _cursor = _cursor.Right(_buffer);
             }
 
-            else if ((ConsoleModifiers.Control & character.Modifiers) == ConsoleModifiers.Control &&
-                 character.Key == ConsoleKey.S) {
+            else if (character.Key == ConsoleKey.F5) {
                 SaveFile();
             }
 
