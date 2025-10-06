@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ExyOS.UserDefinitions
+﻿namespace ExyOS.UserDefinitions
 {
     /// <summary>
     /// Contains informations of selected User.

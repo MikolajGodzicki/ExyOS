@@ -23,7 +23,7 @@ namespace ExyOS {
         }
 
         private Lexer lexer;
-        private Parser parser;
+        private Interpreter interpreter;
 
         private DefaultFiles defaultFiles;
 
@@ -47,7 +47,7 @@ namespace ExyOS {
 
         public ExyOs() {
             lexer = new Lexer();
-            parser = new Parser();
+            interpreter = new Interpreter();
             defaultFiles = new DefaultFiles();
             commandContainer = new CommandContainer();
 
@@ -69,7 +69,7 @@ namespace ExyOS {
                 DisplayConsole(logicPath);
                 string? input = Console.ReadLine();
                 Command command = lexer.InterpretInputToCommand(input);
-                parser.Parse(command);
+                interpreter.Execute(command);
             }
 
         }

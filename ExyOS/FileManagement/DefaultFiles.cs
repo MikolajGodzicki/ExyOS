@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ExyOS.FileManagement {
+﻿namespace ExyOS.FileManagement {
     internal class DefaultFiles {
         public void CreateFilesIfNotExist(string path) {
             //directories

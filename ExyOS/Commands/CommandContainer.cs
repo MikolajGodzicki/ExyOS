@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ExyOS.Commands {
+﻿namespace ExyOS.Commands {
     internal class CommandContainer {
         public static Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>();
         
